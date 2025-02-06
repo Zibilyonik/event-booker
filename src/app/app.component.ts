@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-root',
