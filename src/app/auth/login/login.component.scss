@@ -1,0 +1,49 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--background-color);
+
+    mat-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            mat-form-field {
+                width: 100%;
+            }
+
+            .actions {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+
+                button {
+                    width: 100%;
+                }
+
+                .mat-button {
+                    margin-top: 8px;
+                }
+            }
+
+            .admin-toggle {
+                margin-top: 16px;
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+.error-snackbar {
+    background-color: #f44336;
+    color: white;
+}
