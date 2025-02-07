@@ -1,0 +1,21 @@
+.slot-management {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+button {
+    align-self: flex-start;
+}
