@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$cal-primary: mat.define-palette(mat.$indigo-palette);
+$cal-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$cal-unavailable: mat.define-palette(mat.$grey-palette, 200, 100, 400);
+
+$cal-theme: mat.define-light-theme((color: (primary: $cal-primary,
+        accent: $cal-accent,
+      ),
+    ));
+
+@include mat.all-component-themes($cal-theme);
+
+:root {
+  --primary-color: #{mat.get-color-from-palette($cal-primary, 500)};
+  --primary-lighter: #{mat.get-color-from-palette($cal-primary, 100)};
+  --primary-darker: #{mat.get-color-from-palette($cal-primary, 700)};
+  --accent-color: #{mat.get-color-from-palette($cal-accent, A200)};
+  --accent-lighter: #{mat.get-color-from-palette($cal-accent, A100)};
+  --accent-darker: #{mat.get-color-from-palette($cal-accent, A400)};
+  --unavailable-color: #{mat.get-color-from-palette($cal-unavailable, 200)};
+  --unavailable-lighter: #{mat.get-color-from-palette($cal-unavailable, 100)};
+  --unavailable-darker: #{mat.get-color-from-palette($cal-unavailable, 400)};
+
+  // Add explicit background color
+  --background-color: var(--primary-lighter);
+}
+
+// Add global styles
+body {
+  margin: 0;
+  background-color: var(--background-color);
+}
