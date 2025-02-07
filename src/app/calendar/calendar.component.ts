@@ -122,7 +122,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   generateTimeslots(currentDate: Date): Timeslot[] {
     const timeslots: Timeslot[] = [];
 
-    for (let i = 0; i <= 24; i++) {
+    for (let i = 0; i <= 23; i++) {
       const time = `${i}:00`;
       const category = this.tabTitles[this.tabIndex];
       const isBooked = this.bookedSlots.some(slot => {
