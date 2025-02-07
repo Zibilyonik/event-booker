@@ -13,7 +13,7 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   private users: User[] = [];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
+  constructor(@Inject(PLATFORM_ID) private platformId: object, private router: Router) {
     if (isPlatformBrowser(this.platformId)) {
       const savedUsers = localStorage.getItem(this.USERS_KEY);
       if (savedUsers) {

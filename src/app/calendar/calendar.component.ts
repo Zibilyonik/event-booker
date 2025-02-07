@@ -240,7 +240,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   unBookTimeslot(date: Date, time: string, category: string): void {
-    // Use the date string directly without creating a new Date object
     this.bookingService.cancelBooking(date.toISOString(), time, category)
       .pipe(take(1))
       .subscribe({
@@ -266,7 +265,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     this.tabIndex = event.index;
     this.selectedDate = null;
     this.selectedTime = null;
-    this.generateWeek(); // Add this line to refresh the view
+    this.generateWeek();
     this.cdr.markForCheck();
   }
   // onTimezoneChange(timezone: Timezone): void {

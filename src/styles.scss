@@ -24,11 +24,9 @@ $cal-theme: mat.define-light-theme((color: (primary: $cal-primary,
   --unavailable-lighter: #{mat.get-color-from-palette($cal-unavailable, 100)};
   --unavailable-darker: #{mat.get-color-from-palette($cal-unavailable, 400)};
 
-  // Add explicit background color
   --background-color: var(--primary-lighter);
 }
 
-// Add global styles
 body {
   margin: 0;
   background-color: var(--background-color);

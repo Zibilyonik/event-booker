@@ -37,7 +37,7 @@ export class BookingService {
   ];
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     private authService: AuthService
   ) {
     let initialData: BookedSlot[] = [];
@@ -103,7 +103,6 @@ export class BookingService {
             return;
           }
 
-          // Helper function to strip time from date
           const stripTime = (dateStr: string) => {
             const date = new Date(dateStr);
             return new Date(date.getFullYear(), date.getMonth(), date.getDate()).toISOString();

@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const email = this.loginForm.value.email;
 
-      // Add 'admin' to email if in admin mode and it's not already there
       const loginEmail = this.isAdminLogin && !email.includes('admin') ?
         email.replace('@', '.admin@') : email;
 
