@@ -1,0 +1,50 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+
+    mat-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            mat-form-field {
+                width: 100%;
+            }
+
+            .actions {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+
+                button {
+                    width: 100%;
+                }
+            }
+
+            .admin-checkbox {
+                margin: 8px 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                mat-checkbox {
+                    margin-right: 8px;
+                }
+
+                .admin-hint {
+                    font-size: 0.85em;
+                    color: rgba(0, 0, 0, 0.6);
+                }
+            }
+        }
+    }
+}

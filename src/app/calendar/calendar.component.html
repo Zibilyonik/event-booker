@@ -46,15 +46,18 @@
           <div
             class="timeslot"
             *ngFor="let slot of day.timeslots"
-            [class.booked]="isSlotTaken(day.date, slot.time)"
-            [class.selected]="isSelected(day.date, slot.time)"
+            [class.booked]="slot.isBooked && !slot.currentUserBooking"
+            [class.user-booked]="slot.currentUserBooking"
+            [class.selected]="isSelected(slot.date, slot.time)"
             (click)="
-              !isSlotTaken(day.date, slot.time) &&
-                selectTimeslot(day.date, slot.time)
+              !slot.isBooked || slot.currentUserBooking
+                ? selectTimeslot(slot.date, slot.time)
+                : null
             "
           >
             {{ slot.time }}
           </div>
+          ()
         </div>
       </div>
       <p>
@@ -63,11 +66,15 @@
       </p>
       <button
         mat-raised-button
-        color="primary"
+        color="currentUserBooking ? 'warn' : 'primary'"
         *ngIf="selectedDate && selectedTime"
-        (click)="bookSelectedSlot()"
+        (click)="
+          currentUserBooking
+            ? unBookTimeslot(selectedDate, selectedTime!, tabTitles[tabIndex])
+            : bookSelectedSlot()
+        "
       >
-        Book Selected Slot
+        {{ currentUserBooking ? "Cancel Booking" : "Book Selected Slot" }}
       </button>
     </ng-template>
   </mat-tab>

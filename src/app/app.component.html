@@ -1,10 +1,19 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<mat-toolbar color="primary">
+  <span>Event Booker</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="!authService.isLoggedIn(); else loggedIn">
+    <a mat-button routerLink="/auth/login">Login</a>
+    <a mat-button routerLink="/auth/signup">Sign Up</a>
+  </ng-container>
+  <ng-template #loggedIn>
+    <a mat-button routerLink="/calendar">Calendar</a>
+    <ng-container *ngIf="authService.isAdmin()">
+      <a mat-button routerLink="/admin">Admin</a>
+    </ng-container>
+    <button mat-button (click)="authService.logout()">Logout</button>
+  </ng-template>
+</mat-toolbar>
 
-<app-calendar></app-calendar>
+<main>
+  <router-outlet></router-outlet>
+</main>
