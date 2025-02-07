@@ -1,1 +1,74 @@
-<p>calendar works!</p>
+<mat-tab-group
+  [(selectedIndex)]="tabIndex"
+  (selectedTabChange)="onTabChange($event)"
+>
+  <mat-tab
+    *ngFor="let label of tabTitles; let i = index"
+    [tabIndex]="tabIndex"
+    label="{{ label }}"
+  >
+    <ng-template matTabContent>
+      <div class="week-navigation">
+        <button mat-raised-button color="primary" (click)="previousWeek()">
+          <mat-icon>arrow_back</mat-icon>
+          Previous Week
+        </button>
+
+        <!-- <mat-form-field appearance="outline" class="timezone-select">
+          <mat-label>Timezone</mat-label>
+          <mat-select
+            [value]="selectedTimezone"
+            (selectionChange)="onTimezoneChange($event.value)"
+          >
+            <mat-option *ngFor="let tz of timezones" [value]="tz">
+              {{ tz.name }} (UTC{{ tz.offset >= 0 ? "+" : "" }}{{ tz.offset }})
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <button mat-raised-button color="primary" (click)="nextWeek()">
+          Next Week
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+      <div
+        [@weekAnimation]="transitionDirection"
+        (@weekAnimation.done)="animationDone($event)"
+        class="week-view"
+      >
+        <div class="day" *ngFor="let day of weekDays">
+          <h3 class="date-text mat-display-3">
+            {{ day.date | date : "dd/MMM/yy" }}
+          </h3>
+          <h4 class="day-of-week mat-display-4">
+            {{ day.date | date : "EEEE" }}
+          </h4>
+          <div
+            class="timeslot"
+            *ngFor="let slot of day.timeslots"
+            [class.booked]="isSlotTaken(day.date, slot.time)"
+            [class.selected]="isSelected(day.date, slot.time)"
+            (click)="
+              !isSlotTaken(day.date, slot.time) &&
+                selectTimeslot(day.date, slot.time)
+            "
+          >
+            {{ slot.time }}
+          </div>
+        </div>
+      </div>
+      <p>
+        Selected date and time: {{ selectedDate | date : "fullDate" }}
+        {{ selectedTime }}
+      </p>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="selectedDate && selectedTime"
+        (click)="bookSelectedSlot()"
+      >
+        Book Selected Slot
+      </button>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
