@@ -287,7 +287,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     this.generateWeek();
   }
 
-  animationDone(_event: AnimationEvent) {
+  animationDone(_event: AnimationEvent): void {
     this.transitionDirection = '';
   }
 }

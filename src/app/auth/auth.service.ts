@@ -27,7 +27,7 @@ export class AuthService {
     }
   }
 
-  signup(email: string): Observable<User> {
+  public signup(email: string): Observable<User> {
     if (!isPlatformBrowser(this.platformId)) {
       return throwError(() => new Error('Cannot access localStorage on server'));
     }
@@ -51,7 +51,7 @@ export class AuthService {
     return this.currentUserSubject.asObservable() as Observable<User>;
   }
 
-  login(email: string): Observable<User | null> {
+  public login(email: string): Observable<User | null> {
     if (!isPlatformBrowser(this.platformId)) {
       return throwError(() => new Error('Cannot access localStorage on server'));
     }
@@ -65,21 +65,21 @@ export class AuthService {
     this.currentUserSubject.next(user);
     return this.currentUserSubject.asObservable()!;
   }
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate(['/auth/login']);
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return !!this.currentUserSubject.value;
   }
 
-  isAdmin(): boolean {
+  public isAdmin(): boolean {
     return this.currentUserSubject.value?.isAdmin || false;
   }
 
-  getCurrentUser(): Observable<User | null> {
+  public getCurrentUser(): Observable<User | null> {
     return this.currentUserSubject.asObservable();
   }
 }

@@ -45,7 +45,7 @@ export class SignupComponent {
     });
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.signupForm.valid) {
       const { email, isAdmin } = this.signupForm.value;
       const signupEmail = isAdmin ? email.replace('@', '.admin@') : email;
